@@ -41,7 +41,6 @@ export default function LandingPage({ navigation }) {
         }),
       ]),
     ]).start(() => {
-      // Smooth sine-like bob: 1 → 1.06 → 1 → 0.94 → 1, repeat
       Animated.loop(
         Animated.sequence([
           Animated.timing(logoBob, {
@@ -107,61 +106,40 @@ export default function LandingPage({ navigation }) {
   const combinedScale = Animated.multiply(logoScale, logoBob);
 
   return (
-    <LinearGradient
-      colors={['#08001a', '#08001a']}
-      style={styles.container}
-    >
+    <LinearGradient colors={['#08001a', '#08001a']} style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#08001a" />
 
-      {/* Cyan burst — bottom left */}
       <LinearGradient
         colors={['#00eeffaa', '#00eeff22', 'transparent']}
-        start={{ x: 0, y: 1 }}
-        end={{ x: 0.65, y: 0.3 }}
+        start={{ x: 0, y: 1 }} end={{ x: 0.65, y: 0.3 }}
         style={StyleSheet.absoluteFill}
       />
-
-      {/* Magenta/pink burst — bottom right */}
       <LinearGradient
         colors={['#ff00ccaa', '#ff00cc22', 'transparent']}
-        start={{ x: 1, y: 1 }}
-        end={{ x: 0.35, y: 0.3 }}
+        start={{ x: 1, y: 1 }} end={{ x: 0.35, y: 0.3 }}
         style={StyleSheet.absoluteFill}
       />
-
-      {/* Yellow-green burst — top right */}
       <LinearGradient
         colors={['#bbff0066', '#bbff0022', 'transparent']}
-        start={{ x: 1, y: 0.1 }}
-        end={{ x: 0.4, y: 0.65 }}
+        start={{ x: 1, y: 0.1 }} end={{ x: 0.4, y: 0.65 }}
         style={StyleSheet.absoluteFill}
       />
-
-      {/* Purple/violet core — radiates from center-top */}
       <LinearGradient
         colors={['#9900ffbb', '#6600ff44', 'transparent']}
-        start={{ x: 0.5, y: 0.2 }}
-        end={{ x: 0.5, y: 0.9 }}
+        start={{ x: 0.5, y: 0.2 }} end={{ x: 0.5, y: 0.9 }}
         style={StyleSheet.absoluteFill}
       />
-
-      {/* Soft dark vignette to deepen edges */}
       <LinearGradient
         colors={['transparent', '#000000cc']}
-        start={{ x: 0.5, y: 0.4 }}
-        end={{ x: 0.5, y: 1 }}
+        start={{ x: 0.5, y: 0.4 }} end={{ x: 0.5, y: 1 }}
         style={StyleSheet.absoluteFill}
       />
 
       <View style={styles.content}>
-
         <Animated.View
           style={[
             styles.logoWrapper,
-            {
-              opacity: logoOpacity,
-              transform: [{ scale: combinedScale }],
-            },
+            { opacity: logoOpacity, transform: [{ scale: combinedScale }] },
           ]}
         >
           <Image
@@ -176,7 +154,7 @@ export default function LandingPage({ navigation }) {
             <TouchableOpacity
               style={[styles.button, styles.buttonPlay]}
               activeOpacity={0.85}
-              onPress={() => navigation?.navigate('Game')}
+              onPress={() => navigation?.navigate('Home')}  // no username = guest
             >
               <Text style={styles.buttonTextPlay}>▶  Play as Guest</Text>
             </TouchableOpacity>
@@ -202,16 +180,13 @@ export default function LandingPage({ navigation }) {
             </TouchableOpacity>
           </Animated.View>
         </Animated.View>
-
       </View>
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   content: {
     flex: 1,
     alignItems: 'center',

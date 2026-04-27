@@ -45,7 +45,7 @@ export default function Login({ navigation }) {
     if (fetchError || !data) {
       setError('Invalid username or password.');
     } else {
-      navigation?.navigate('Game');
+      navigation?.navigate('Home', { username: cleanUsername });
     }
   }
 

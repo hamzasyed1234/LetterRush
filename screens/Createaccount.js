@@ -73,7 +73,7 @@ export default function CreateAccount({ navigation }) {
     if (insertError) {
       setError('Something went wrong. Please try again.');
     } else {
-      navigation?.navigate('Game');
+      navigation?.navigate('Home', { username: cleanUsername });
     }
   }
 
